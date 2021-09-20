@@ -2,6 +2,8 @@ package com.sharkpay.myspace.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
@@ -19,6 +21,7 @@ public class Post implements Serializable {
 	private String content;
 	private Integer likes;
 	private User author;
+	private List<Comment> comments = new ArrayList<>();
 	
 	public Post() {
 	}
@@ -74,6 +77,10 @@ public class Post implements Serializable {
 
 	public String getId() {
 		return id;
+	}
+	
+	public List<Comment> getComments() {
+		return comments;
 	}
 
 	@Override
