@@ -9,6 +9,9 @@ public class Comment {
 	private Integer likes;
 	private User author;
 	
+	public Comment() {
+	}
+	
 	public Comment(String text, LocalDate moment, Integer likes, User author) {
 		this.text = text;
 		this.moment = moment;
