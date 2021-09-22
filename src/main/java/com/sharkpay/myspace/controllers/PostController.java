@@ -14,42 +14,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sharkpay.myspace.dto.UserDTO;
-import com.sharkpay.myspace.entities.User;
-import com.sharkpay.myspace.services.UserService;
+import com.sharkpay.myspace.dto.PostDTO;
+import com.sharkpay.myspace.entities.Post;
+import com.sharkpay.myspace.services.PostService;
 
 @RestController
-@RequestMapping(path = "/users")
-public class UserController {
+@RequestMapping(path = "/posts")
+public class PostController {
 	
 	@Autowired
-	private UserService service;
+	private PostService service;
 	
 	@GetMapping
-	public ResponseEntity<List<UserDTO>> findAll() {
-		List<User> userList = service.findAll();
-		List<UserDTO> userDTOList = userList.stream()
-				.map(user -> UserDTO.convertToDTO(user))
+	public ResponseEntity<List<PostDTO>> findAll() {
+		List<Post> postList = service.findAll();
+		List<PostDTO> postDTOList = postList.stream()
+				.map(post -> PostDTO.convertToDTO(post))
 				.collect(Collectors.toList());
-		return ResponseEntity.ok(userDTOList);
+		return ResponseEntity.ok(postDTOList);
 	}
 	
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<UserDTO> findById(@PathVariable String id) {
-		User user = service.findById(id);
-		UserDTO userDTO = UserDTO.convertToDTO(user);
-		return ResponseEntity.ok(userDTO);
+	public ResponseEntity<PostDTO> findById(@PathVariable String id) {
+		Post post = service.findById(id);
+		PostDTO postDTO = PostDTO.convertToDTO(post);
+		return ResponseEntity.ok(postDTO);
 	}
 	
 	@PostMapping
-	public ResponseEntity<Void> insert(@RequestBody User user) {
-		service.insert(user);
+	public ResponseEntity<Void> insert(@RequestBody Post post) {
+		service.insert(post);
 		return ResponseEntity.created(null).build();
 	}
 	
 	@PutMapping
-	public ResponseEntity<Void> update(@RequestBody User user) {
-		service.update(user);
+	public ResponseEntity<Void> update(@RequestBody Post post) {
+		service.update(post);
 		return ResponseEntity.noContent().build();
 	}
 	

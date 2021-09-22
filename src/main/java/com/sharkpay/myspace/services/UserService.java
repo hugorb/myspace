@@ -32,8 +32,8 @@ public class UserService {
 		return repository.save(user);
 	}
 	
-	public void delete(User obj) {
-		User user = findById(obj.getId());
+	public void deleteById(String id) {
+		User user = findById(id);
 		repository.delete(user);
 	}
 	

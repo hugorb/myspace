@@ -32,8 +32,8 @@ public class PostService {
 		return repository.save(post);
 	}
 	
-	public void delete(Post obj) {
-		Post post = findById(obj.getId());
+	public void deleteById(String id) {
+		Post post = findById(id);
 		repository.delete(post);
 	}
 	
