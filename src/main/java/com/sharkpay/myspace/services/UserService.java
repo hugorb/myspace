@@ -33,7 +33,8 @@ public class UserService {
 	}
 	
 	public void delete(User obj) {
-		repository.delete(obj);
+		User user = findById(obj.getId());
+		repository.delete(user);
 	}
 	
 	private void updateData(User newUser, User oldUser) {

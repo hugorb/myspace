@@ -27,12 +27,13 @@ public class PostService {
 	}
 	
 	public Post update (Post obj) {
-		Post post = new Post();
+		Post post = findById(obj.getId());
 		updateData(post, obj);
 		return repository.save(post);
 	}
 	
-	public void delete(Post post) {
+	public void delete(Post obj) {
+		Post post = findById(obj.getId());
 		repository.delete(post);
 	}
 	
