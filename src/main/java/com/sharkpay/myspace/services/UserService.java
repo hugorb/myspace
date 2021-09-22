@@ -3,10 +3,12 @@ package com.sharkpay.myspace.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.sharkpay.myspace.entities.User;
 import com.sharkpay.myspace.repositories.UserRepository;
 
+@Service
 public class UserService {
 	
 	@Autowired
@@ -26,14 +28,18 @@ public class UserService {
 	
 	public User update(User obj) {
 		User user = findById(obj.getId());
-		user.setEmail(obj.getEmail());
-		user.setName(obj.getName());
-		user.setPassword(obj.getPassword());
+		updateData(user, obj);
 		return repository.save(user);
 	}
 	
 	public void delete(User obj) {
 		repository.delete(obj);
+	}
+	
+	private void updateData(User newUser, User oldUser) {
+		newUser.setEmail(oldUser.getEmail());
+		newUser.setName(oldUser.getName());
+		newUser.setPassword(oldUser.getPassword());
 	}
 
 }
