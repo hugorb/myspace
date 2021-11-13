@@ -29,7 +29,7 @@ public class PostController {
 	public ResponseEntity<List<PostDTO>> findAll() {
 		List<Post> postList = service.findAll();
 		List<PostDTO> postDTOList = postList.stream()
-				.map(post -> PostDTO.convertToDTO(post))
+				.map(PostDTO::convertToDTO)
 				.collect(Collectors.toList());
 		return ResponseEntity.ok(postDTOList);
 	}

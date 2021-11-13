@@ -29,7 +29,7 @@ public class UserController {
 	public ResponseEntity<List<UserDTO>> findAll() {
 		List<User> userList = service.findAll();
 		List<UserDTO> userDTOList = userList.stream()
-				.map(user -> UserDTO.convertToDTO(user))
+				.map(UserDTO::convertToDTO)
 				.collect(Collectors.toList());
 		return ResponseEntity.ok(userDTOList);
 	}
